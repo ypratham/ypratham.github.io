@@ -82,7 +82,7 @@ const LandingHome = () => {
 
         <div className="flex justify-between w-full">
           <div>
-            <p className="text-3xl font-bold">4+ year</p>
+            <p className="text-3xl font-bold">2.6+ years</p>
             <p className="font-medium">of experience</p>
           </div>
           <div>
