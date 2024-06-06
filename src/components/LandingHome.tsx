@@ -93,7 +93,7 @@ const LandingHome = () => {
       </div>
 
       <Image
-        src={"assets/images/profile_pic.png"}
+        src={"/assets/images/profile_pic.png"}
         alt="Pratham Yadav"
         width={300}
         height={300}

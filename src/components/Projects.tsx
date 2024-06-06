@@ -13,7 +13,6 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Badge } from "./ui/badge";
 
@@ -23,7 +22,7 @@ const projectList = [
     label: "Invoice Generator",
     link: "https://github.com/ypratham/invoice-generator",
     description: "Web app",
-    image: "assets/images/project_thumbnail/invoice_thumbnail.png",
+    image: "/assets/images/project_thumbnail/invoice_thumbnail.png",
     tags: ["react", "open-source"],
   },
   {
@@ -31,7 +30,7 @@ const projectList = [
     label: "Revive",
     link: "https://github.com/ypratham/revive-flutter",
     description: "Flutter application",
-    image: "assets/images/project_thumbnail/revive_thumbnail.png",
+    image: "/assets/images/project_thumbnail/revive_thumbnail.png",
     tags: ["flutter", "google-solution-challenge"],
   },
   {
@@ -39,7 +38,7 @@ const projectList = [
     label: "Roaster",
     link: "https://github.com/ypratham/roster",
     description: "Mobile application",
-    image: "assets/images/project_thumbnail/roaster_thumbnail.png",
+    image: "/assets/images/project_thumbnail/roaster_thumbnail.png",
     tags: ["react-native", "todo"],
   },
   {
@@ -47,7 +46,7 @@ const projectList = [
     label: "Aide",
     link: "https://github.com/ypratham/aide",
     description: "Web design",
-    image: "assets/images/project_thumbnail/aide_thumbnail.png",
+    image: "/assets/images/project_thumbnail/aide_thumbnail.png",
     tags: ["react", "hackathon"],
   },
   {
@@ -55,7 +54,7 @@ const projectList = [
     label: "Centaur",
     link: "https://antaur-international.github.io/centaur-web/",
     description: "College",
-    image: "assets/images/project_thumbnail/centaur_thumbnail.png",
+    image: "/assets/images/project_thumbnail/centaur_thumbnail.png",
     tags: ["react", "meet", "socket"],
   },
 
@@ -64,7 +63,7 @@ const projectList = [
     label: "Discord Bot",
     link: "https://github.com/ypratham/discordBot",
     description: "Automation",
-    image: "assets/images/project_thumbnail/discord_thumbnail.png",
+    image: "/assets/images/project_thumbnail/discord_thumbnail.png",
     tags: ["discord", "python"],
   },
   {
@@ -72,7 +71,7 @@ const projectList = [
     label: "Collabrative Canvas",
     link: "https://github.com/ypratham/Collab-Draw",
     description: "Web application",
-    image: "assets/images/project_thumbnail/collab_canvas_thumbnail.png",
+    image: "/assets/images/project_thumbnail/collab_canvas_thumbnail.png",
     tags: ["socket", "react"],
   },
   {
@@ -80,7 +79,7 @@ const projectList = [
     label: "GitHub Search API",
     link: "https://github.com/ypratham/github-search-api",
     description: "Web Design",
-    image: "assets/images/project_thumbnail/github_search_thumbnail.png",
+    image: "/assets/images/project_thumbnail/github_search_thumbnail.png",
     tags: ["react", "github"],
   },
 ];
