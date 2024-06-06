@@ -98,6 +98,7 @@ const LandingHome = () => {
         width={300}
         height={300}
         className="w-1/2 md:w-1/4 object-cover"
+        priority
       />
     </section>
   );
