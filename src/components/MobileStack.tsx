@@ -5,7 +5,7 @@ import ToolsStackTab from "./ToolsStackTab";
 
 const MobileStack = () => {
   return (
-    <Tabs defaultValue="development w-full">
+    <Tabs defaultValue="development" className="w-full">
       <TabsList className="mb-4">
         <TabsTrigger value="development">Development</TabsTrigger>
         <TabsTrigger value="tools">Tools</TabsTrigger>
