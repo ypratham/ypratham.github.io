@@ -1,133 +1,140 @@
 "use client";
 
-import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Menu,
-  Globe,
-  User,
-  Crosshair,
-  Award,
-  Gamepad2,
-  Briefcase,
-  LayoutGrid,
-} from "lucide-react";
-import Image from "next/image";
-import { useSounds } from "@/hooks/useSounds";
+import { useTheme } from "next-themes";
+import { Sun, Moon, Monitor, Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
 
-interface NavItemProps {
-  href: string;
-  label: string;
-  icon: React.ElementType;
-  currentPath: string;
-  onClick?: () => void;
-}
+const NAV_ITEMS = [
+  { href: "/projects", label: "Projects" },
+  { href: "/experience", label: "Experience" },
+  { href: "/achievements", label: "Achievements" },
+  { href: "/timeline", label: "Timeline" },
+];
 
-const NavItem: React.FC<NavItemProps> = ({
-  href,
-  label,
-  icon: Icon,
-  currentPath,
-  onClick,
-}) => {
-  const { playHover, stopHover } = useSounds();
-
-  // Check if the current path matches the nav item, OR if it's a child page (e.g. /projects/123 belongs to /projects)
-  const isActive =
-    currentPath === href ||
-    (href === "/projects" && currentPath.startsWith("/projects/"));
-
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      onMouseEnter={playHover}
-      onMouseLeave={stopHover}
-      className={`flex items-center gap-2 px-6 py-4 font-header text-lg tracking-widest uppercase border-b-2 transition-all duration-300 ${
-        isActive
-          ? "text-[#FF4655] border-[#FF4655] bg-[#FF4655]/10"
-          : "text-[#ECE8E1]/60 border-transparent hover:text-[#ECE8E1] hover:bg-[#ECE8E1]/5"
-      }`}
-    >
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-      {/* @ts-ignore */}
-      <Icon size={18} />
-      {label}
-    </Link>
-  );
-};
-
-const Header: React.FC = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function Header() {
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const navItems = [
-    { href: "/", label: "Lobby", icon: Globe },
-    { href: "/agent", label: "Agent", icon: User },
-    { href: "/projects", label: "Projects", icon: LayoutGrid },
-    { href: "/career", label: "Career", icon: Crosshair },
-    { href: "/loadout", label: "Loadout", icon: Briefcase },
-    { href: "/awards", label: "Awards", icon: Award },
-    { href: "/training", label: "Training", icon: Gamepad2 },
-  ];
+  // Close menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
-    <>
-      <header className="relative z-10 flex items-center justify-between px-6 border-b border-[#ECE8E1]/10 bg-[#0F1923]/90 backdrop-blur-md h-20">
-        <Link href="/" className="flex items-center gap-4 cursor-pointer">
-          <Image src="/logo.png" alt="Logo" width={32} height={32} />
-          <div className="hidden md:block">
-            <h1 className="text-xl font-bold tracking-widest leading-none">
-              PRATHAM
-            </h1>
-            <span className="text-xs font-header text-[#FF4655] font-bold">
-              JoyfulNomad#YP20
-            </span>
-          </div>
+    <header className="sticky top-0 z-50 border-b border-dashed border-border bg-background/80 backdrop-blur-md">
+      <div className="max-w-5xl mx-auto flex items-center justify-between px-6 h-14">
+        <Link
+          href="/"
+          className="text-foreground font-mono font-bold tracking-tight text-lg hover:text-highlight transition-colors"
+        >
+          Pratham
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden xl:flex items-center h-full">
-          {navItems.map((item) => (
-            <NavItem
-              key={item.href}
-              href={item.href}
-              label={item.label}
-              icon={item.icon}
-              currentPath={pathname}
-            />
-          ))}
-        </nav>
+        <div className="flex items-center gap-4">
+          <SpotifyNowPlaying />
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="xl:hidden text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <Menu />
-        </button>
-      </header>
+          <nav className="hidden sm:flex items-center gap-6">
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-sm font-mono transition-colors ${
+                    isActive
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-      {/* Mobile Nav Overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0F1923] pt-24 px-6 xl:hidden overflow-y-auto">
-          <nav className="flex flex-col gap-4">
-            {navItems.map((item) => (
-              <NavItem
-                key={item.href}
-                href={item.href}
-                label={item.label}
-                icon={item.icon}
-                currentPath={pathname}
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            ))}
+          <div className="flex items-center gap-1 border border-border rounded-full p-0.5">
+            <button
+              onClick={() => setTheme("light")}
+              className={`p-1.5 rounded-full transition-colors ${
+                theme === "light"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-label="Switch to light theme"
+            >
+              <Sun className="size-3.5" />
+            </button>
+            <button
+              onClick={() => setTheme("dark")}
+              className={`p-1.5 rounded-full transition-colors ${
+                theme === "dark"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-label="Switch to dark theme"
+            >
+              <Moon className="size-3.5" />
+            </button>
+            <button
+              onClick={() => setTheme("system")}
+              className={`p-1.5 rounded-full transition-colors ${
+                theme === "system"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-label="Use system theme"
+            >
+              <Monitor className="size-3.5" />
+            </button>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="sm:hidden p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu overlay */}
+      {menuOpen && (
+        <div className="sm:hidden fixed inset-0 top-14 z-40 bg-background/95 backdrop-blur-md border-t border-dashed border-border">
+          <nav className="flex flex-col px-6 py-8 gap-1">
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`text-lg font-mono py-3 border-b border-dashed border-border transition-colors ${
+                    isActive
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}
-    </>
+    </header>
   );
-};
-
-export default Header;
+}
