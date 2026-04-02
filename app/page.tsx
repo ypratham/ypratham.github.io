@@ -4,18 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import GridSection from "@/components/GridSection";
 import GridBox from "@/components/GridBox";
-import {
-  PROFILE,
-  SKILLS,
-  PROJECTS,
-  EXPERIENCE,
-} from "@/constants";
+import { PROFILE, SKILLS, PROJECTS, EXPERIENCE } from "@/constants";
 import SkillIcon from "@/components/SkillIcon";
-import {
-  ArrowUpRight,
-  FileText,
-  Mail,
-} from "lucide-react";
+import { ArrowUpRight, FileText, Mail } from "lucide-react";
 
 export default function Home() {
   const topSkills = SKILLS.flatMap((cat) => cat.skills)
@@ -32,8 +23,8 @@ export default function Home() {
           </p>
 
           <GridBox className="mb-8">
-            <div className="p-8 md:p-12">
-              <div className="aspect-video w-full bg-card rounded-sm overflow-hidden">
+            <div className="p-8">
+              <div className="h-30 w-full bg-card rounded-sm overflow-hidden">
                 <Image
                   src="/pratham.jpg"
                   alt="Pratham Yadav"
@@ -49,13 +40,12 @@ export default function Home() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-3">
             {PROFILE.name}
           </h1>
-          <p className="text-muted-foreground text-lg mb-4">
-            {PROFILE.role}
-          </p>
+          <p className="text-muted-foreground text-lg mb-4">{PROFILE.role}</p>
           <p className="text-muted-foreground leading-relaxed max-w-2xl mb-6">
             I build{" "}
             <span className="text-highlight bg-highlight/10 px-1">
-              pixel-perfect interfaces, scalable frontends, and full-stack products
+              pixel-perfect interfaces, scalable frontends, and full-stack
+              products
             </span>{" "}
             &mdash; shipping fast without cutting corners.
           </p>
@@ -127,7 +117,11 @@ export default function Home() {
             {PROJECTS.slice(0, 4).map((project, i) => {
               const Wrapper = project.link ? "a" : "div";
               const linkProps = project.link
-                ? { href: project.link, target: "_blank" as const, rel: "noopener noreferrer" }
+                ? {
+                    href: project.link,
+                    target: "_blank" as const,
+                    rel: "noopener noreferrer",
+                  }
                 : {};
 
               return (
@@ -230,8 +224,8 @@ export default function Home() {
               Let&apos;s Build Something
             </h2>
             <p className="text-muted-foreground max-w-xl leading-relaxed mb-6">
-              If you&apos;re working on something ambitious and need a frontend engineer
-              who prefers{" "}
+              If you&apos;re working on something ambitious and need a frontend
+              engineer who prefers{" "}
               <span className="text-highlight bg-highlight/10 px-1">
                 clarity over chaos
               </span>
