@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import ThemeProvider from "@/components/ThemeProvider";
 import ThemeToaster from "@/components/ThemeToaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
+import type { Metadata } from "next";
+import { Geist_Mono } from "next/font/google";
+import "./globals.css";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -41,13 +40,13 @@ export default function RootLayout({
           <ThemeToaster />
         </ThemeProvider>
         <Analytics />
-        <Script id="clarity">
+        {/*<Script id="clarity">
           {` (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
               t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "w5d7wb5v93");`}
-        </Script>
+        </Script>*/}
       </body>
     </html>
   );
