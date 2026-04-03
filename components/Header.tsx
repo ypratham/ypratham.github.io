@@ -5,7 +5,11 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Monitor, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
+import dynamic from "next/dynamic";
+const SpotifyNowPlaying = dynamic(
+  () => import("@/components/SpotifyNowPlaying"),
+  { ssr: false }
+);
 
 const NAV_ITEMS = [
   { href: "/projects", label: "Projects" },
