@@ -23,47 +23,61 @@ export default function Home() {
           </p>
 
           <GridBox className="mb-8">
-            <div className="p-8">
-              <div className="h-30 w-full bg-card rounded-sm overflow-hidden">
-                <Image
-                  src="/pratham.jpg"
-                  alt="Pratham Yadav"
-                  width={960}
-                  height={540}
-                  className="w-full h-full object-cover opacity-80"
-                  priority
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center">
+              <div className="p-8 md:p-10 order-2 md:order-1">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-3">
+                  {PROFILE.name}
+                </h1>
+                <p className="text-muted-foreground text-lg mb-4">
+                  {PROFILE.role}
+                </p>
+                <p className="text-muted-foreground leading-relaxed max-w-xl mb-6">
+                  I build{" "}
+                  <span className="text-highlight bg-highlight/10 px-1">
+                    pixel-perfect interfaces, scalable applications, and
+                    full-stack products
+                  </span>{" "}
+                  &mdash; shipping fast without cutting corners.
+                </p>
+
+                <div className="flex gap-3">
+                  <Button variant="outline" size="sm" asChild>
+                    <a href={`mailto:${PROFILE.email}`}>
+                      <Mail data-icon="inline-start" className="size-4" />
+                      Contact
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="/experience">
+                      <FileText data-icon="inline-start" className="size-4" />
+                      Resume
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              <div className="relative order-1 md:order-2 overflow-hidden border-b md:border-b-0 md:border-l border-dashed border-border">
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 50% 65%, color-mix(in oklab, var(--highlight) 12%, transparent) 0%, transparent 60%)",
+                  }}
                 />
+                <div className="relative w-full aspect-square md:w-72 lg:w-80 mx-auto">
+                  <Image
+                    src="/Pratham 3D.png"
+                    alt="Pratham Yadav 3D avatar"
+                    fill
+                    sizes="(min-width: 1024px) 320px, (min-width: 768px) 288px, 100vw"
+                    className="object-contain p-6"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </GridBox>
-
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-3">
-            {PROFILE.name}
-          </h1>
-          <p className="text-muted-foreground text-lg mb-4">{PROFILE.role}</p>
-          <p className="text-muted-foreground leading-relaxed max-w-2xl mb-6">
-            I build{" "}
-            <span className="text-highlight bg-highlight/10 px-1">
-              pixel-perfect interfaces, scalable frontends, and full-stack
-              products
-            </span>{" "}
-            &mdash; shipping fast without cutting corners.
-          </p>
-
-          <div className="flex gap-3">
-            <Button variant="outline" size="sm" asChild>
-              <a href={`mailto:${PROFILE.email}`}>
-                <Mail data-icon="inline-start" className="size-4" />
-                Contact
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/experience">
-                <FileText data-icon="inline-start" className="size-4" />
-                Resume
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
 
