@@ -46,9 +46,7 @@ export const PROFILE = {
   linkedin: "https://linkedin.com/in/ypratham",
   github: "https://github.com/ypratham",
   bio: "Full-stack engineer specializing in high-velocity frontend development. Building pixel-perfect, interactive web experiences with modern technologies.",
-  yearsOfExperience: Math.abs(
-    new Date("20 Feb,2021").getFullYear() - new Date().getFullYear(),
-  ),
+  yearsOfExperience: 3,
 };
 
 export const SKILLS: SkillCategory[] = [
